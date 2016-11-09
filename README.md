@@ -8,3 +8,6 @@
 + 左键：向左移动
 + 邮件：向右移动
 
+##运行示例
+
+![示例](http://ogd7u08dr.bkt.clouddn.com/image/jpg/tetris.jpg)
