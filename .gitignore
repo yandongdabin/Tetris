@@ -1,0 +1,8 @@
+/Debug/*
+/Release/*
+/Tetris/Debug
+/Tetris/Release
+*.aps
+*.vcproj
+*.user
+*.ncb
