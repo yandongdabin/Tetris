@@ -18,10 +18,13 @@ public:
 	Game(void);
 	~Game(void);
 public:
-	static const int ROW = 15;
-	static const int COL = 11;
-	static const COLORREF colors[4];
-	static const int chessNumber= 5;
+	static const int ROW = 21;
+	static const int COL = 15;
+	static const int colorNumber = 13;
+	static const COLORREF colors[colorNumber];
+	static const int chessNumber= 7;
+	static const COLORREF backGroundLineColor;
+	
 
 private:
 	

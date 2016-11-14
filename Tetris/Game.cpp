@@ -10,14 +10,28 @@ const int Game::chess[Game::chessNumber][4] = {
 	0x0f00,0x2222,0x00f0,0x4444, // ----
 	0x0c44,0x2E00,0x2230,0x0074, // q
 	0x0c60,0x2640,0x0630,0x0264, // z
-	0x0644,0x0E20,0x2260,0x0470  // p
+	0x0644,0x0E20,0x2260,0x0470,  // p
+	0x006c,0x8c40,0x3600,0x0231,
+	//0x004e,0x8c80,0x7200,0x0131
+	0x04e0,0x4640,0x0720,0x0262
 };
-const COLORREF Game::colors[4] ={
+const COLORREF Game::colors[Game::colorNumber] ={
 	RGB(204,51,51),
 	RGB(255,131,250),
 	RGB(153,255,102),
-	RGB(0,51,153)
+	RGB(0,51,153),
+	RGB(139,101,8),
+	RGB(102,255,0),
+	RGB(255,225,255),
+	RGB(51,0,51),
+	RGB(154, 50, 205),
+	RGB(0, 139, 69),
+	RGB(255, 131, 250),
+	RGB(255, 255, 0),
+	RGB(255, 127, 80)
 };
+const COLORREF Game::backGroundLineColor = RGB(8, 8, 8);
+
 Game::Game(void){
 	state = OVER;
 	srand((unsigned int)time(NULL));
@@ -142,7 +156,7 @@ void Game::moveRight(){
 void Game::getNextChess(){
 	currentChess = nextChess;
 	curpos.shape = nextChessShape;
-	curpos.color = rand() % 4;
+	curpos.color = rand() % colorNumber;
 	curpos.x = -3;
 	curpos.y = 5;
 	nextChess = rand() % chessNumber;

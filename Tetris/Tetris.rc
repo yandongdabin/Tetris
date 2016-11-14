@@ -70,8 +70,15 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDR_MAINFRAME           ICON                    "res\\Tetris.ico"
 IDI_MAIN                ICON                    "res\\main.ico"
+IDR_MAINFRAME           ICON                    "res\\Tetris.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BG                  BITMAP                  "res\\bg.bmp"
 #endif    // Chinese (P.R.C.) resources
 /////////////////////////////////////////////////////////////////////////////
 
@@ -90,18 +97,18 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 // Dialog
 //
 
-IDD_TETRIS_DIALOG DIALOGEX 0, 0, 339, 295
+IDD_TETRIS_DIALOG DIALOGEX 0, 0, 456, 407
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_APPWINDOW
 CAPTION "Tetris"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "",IDC_BROAD,"Static",SS_BLACKFRAME,15,17,197,260
-    CONTROL         "",IDC_NEXT,"Static",SS_BLACKFRAME,230,29,62,53
-    LTEXT           "Score:",IDC_STATIC,227,109,22,8
-    LTEXT           "",IDC_SCORE,255,109,44,11
-    PUSHBUTTON      "start",IDC_START,241,209,50,14,NOT WS_TABSTOP
-    PUSHBUTTON      "stop",IDC_STOP,241,232,50,14,NOT WS_TABSTOP
+    CONTROL         "",IDC_BROAD,"Static",SS_BLACKFRAME,15,17,306,364
+    CONTROL         "",IDC_NEXT,"Static",SS_BLACKFRAME,331,23,62,53
+    LTEXT           "Score:",IDC_STATICSCORE,338,109,22,8
+    LTEXT           "",IDC_SCORE,382,109,44,11
+    PUSHBUTTON      "start",IDC_START,333,180,61,32,NOT WS_TABSTOP
+    PUSHBUTTON      "stop",IDC_STOP,334,231,60,34,NOT WS_TABSTOP
 END
 
 
@@ -155,9 +162,9 @@ BEGIN
     IDD_TETRIS_DIALOG, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 332
+        RIGHTMARGIN, 449
         TOPMARGIN, 7
-        BOTTOMMARGIN, 288
+        BOTTOMMARGIN, 400
     END
 END
 #endif    // APSTUDIO_INVOKED

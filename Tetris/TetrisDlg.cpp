@@ -25,6 +25,7 @@ CTetrisDlg::CTetrisDlg(CWnd* pParent /*=NULL*/)
 void CTetrisDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_STATICSCORE, m_static);
 }
 BOOL CTetrisDlg::PreTranslateMessage(MSG* pMsg)
 {
@@ -41,6 +42,7 @@ BEGIN_MESSAGE_MAP(CTetrisDlg, CDialog)
 	ON_WM_TIMER()
 	ON_BN_CLICKED(IDC_STOP, &CTetrisDlg::OnBnClickedStop)
 	ON_WM_ERASEBKGND()
+	ON_WM_CTLCOLOR()
 END_MESSAGE_MAP()
 
 
@@ -52,7 +54,9 @@ BOOL CTetrisDlg::OnInitDialog()
 
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, TRUE);		// Set small icon
-
+	m_font.CreatePointFont(100, "Arial", NULL);  
+	m_static.SetFont(&m_font,true);  
+	//m_static.SetWindowText("Score");  
 
 
 	return TRUE;  
@@ -110,12 +114,12 @@ void CTetrisDlg::drawBoard(){
 	MemBitmap.CreateCompatibleBitmap(pDC,nWidth,nHeight); 
 
 	
-	CBitmap   *pOldBit=MemDC.SelectObject(&MemBitmap); 
+	CBitmap *pOldBit=MemDC.SelectObject(&MemBitmap); 
 
 	
 	MemDC.FillSolidRect(0,0,nWidth,nHeight,RGB(255,255,255));
 
-	CPen pen(PS_SOLID, 1, RGB(148, 0, 211));
+	CPen pen(PS_SOLID, 1, Game::backGroundLineColor);
 	
 	CPen* pOldPen=MemDC.SelectObject(&pen);
 	
@@ -207,7 +211,7 @@ void CTetrisDlg::drawNext(){
 	MemBitmap.CreateCompatibleBitmap(pDC,nWidth,nHeight); 
 
 
-	CBitmap   *pOldBit=MemDC.SelectObject(&MemBitmap); 
+	CBitmap *pOldBit=MemDC.SelectObject(&MemBitmap); 
 
 
 	MemDC.FillSolidRect(0,0,nWidth,nHeight,RGB(255,255,255));
@@ -274,4 +278,26 @@ BOOL CTetrisDlg::OnEraseBkgnd(CDC* pDC)
 	return TRUE;
 
 	//return CDialog::OnEraseBkgnd(pDC);
+}
+
+HBRUSH CTetrisDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+{
+	HBRUSH hbr = CDialog::OnCtlColor(pDC, pWnd, nCtlColor);
+	if(nCtlColor == CTLCOLOR_STATIC ) 
+	{ 
+		/*set Text 'score'*/
+		if(pWnd->GetDlgCtrlID()== IDC_STATICSCORE)
+		{
+			pDC->SetTextColor(RGB(255,0,0));
+			pDC->SetBkColor(RGB(251, 247, 200));
+		}
+		pDC->SetBkMode(TRANSPARENT);
+		return (HBRUSH)::GetStockObject(WHITE_BRUSH); 
+	}
+	if(nCtlColor == CTLCOLOR_BTN){
+		pDC-> SetTextColor(RGB(255,255,0));
+		//pDC-> SetBkMode(TRANSPARENT);
+		return (HBRUSH)::GetStockObject(NULL_BRUSH); 
+	}
+	return hbr;
 }

@@ -4,6 +4,7 @@
 #pragma once
 
 #include "Game.h"
+#include "afxwin.h"
 // CTetrisDlg dialog
 class CTetrisDlg : public CDialog
 {
@@ -34,10 +35,14 @@ private:
 	void drawBoard();
 	void OnKeyDown(UINT nChar);
 	Game game;
+	CFont m_font;
 public:
 	afx_msg void OnBnClickedStart();
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnBnClickedStop();
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+private:
+	CStatic m_static;
 };
